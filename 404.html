@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>qr.goha.com</title>
+</head>
+
+<body>
+  <div id="content"></div>
+  <script type="text/javascript">
+
+    document.addEventListener("content", directURL);
+
+    function directURL(event) {
+      event.preventDefault();
+      var userAgent = window.navigator.userAgent,
+        platform = window.navigator.platform,
+        macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+        windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+        iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+        os = null;
+
+      const temp = window;
+
+      const token = window.screen.availWidth.toString() +
+        window.screen.availHeight.toString() +
+        window.navigator.platform
+
+      if (macosPlatforms.indexOf(platform) !== -1) {
+        os = 'Mac OS';
+      } else if (iosPlatforms.indexOf(platform) !== -1) {
+        os = 'iOS';
+      } else if (windowsPlatforms.indexOf(platform) !== -1) {
+        os = 'Windows';
+      } else if (/Android/.test(userAgent)) {
+        os = 'Android';
+      } else if (!os && /Linux/.test(platform)) {
+        os = 'Linux';
+      }
+
+
+      if (os === "iOS") {
+          window.location.assign('https://itunes.apple.com/us/app/keynote/id6740338573?mt=8');
+      } else if (os === 'Android') {
+          window.location.assign('market://details?id=com.goha.customer').target = "_top";
+      } else {
+        window.location.assign(`https://play.google.com/store/apps/details?id=com.goha.customer`).target = "_top";
+
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
